@@ -1,0 +1,12 @@
+.card {
+    height: 28rem !important;
+}
+
+.rounded {
+    border-radius: 3rem !important;
+}
+
+.card-img-top {
+    height: 60%;
+    object-fit: cover;
+}
