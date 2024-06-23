@@ -100,4 +100,19 @@ comments.
 
 ## How to run
 
-...
+### Start the API server
+Move inside the `/server` directory and run:
+```bash
+$ npm start
+```
+
+### Start the recipebook app
+Move inside the `/recipebook-app` directory and run:
+```bash
+$ npm run dev
+```
+
+For more information check README inside the recipebook app
+
+
+![alt text](https://i.redd.it/ua3tudoh8ay41.jpg)
