@@ -31,3 +31,5 @@ interface Diet {
     id: string,
     name: string
 }
+
+type APIResources = "recipes" | "comments" | "cuisines" | "difficulties" | "diets"

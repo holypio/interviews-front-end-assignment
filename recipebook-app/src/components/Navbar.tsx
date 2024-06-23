@@ -7,7 +7,7 @@ export default function Navbar() {
     return (
         <nav className="shadow navbar mb-5 navbar-expand-lg">
             <div className="container-fluid">
-                <img className="logo" src="../../public/icon.svg" alt="Logo" />
+                <Link to={'/'}><img className="logo" src="/icon.svg" alt="Logo" /></Link>
                 <div
                     className="offcanvas offcanvas-end"
                     tabIndex={-1}
@@ -55,7 +55,7 @@ export default function Navbar() {
                         </ul>
                     </div>
                 </div>
-                <Link className="btn btn-primary rounded px-4 py-1" to={'/form'}>Add new!</Link>
+                <Link className="btn btn-primary rounded px-4 py-1" to={'/form'}>Add your recipe!</Link>
                 <button
                     className="navbar-toggler"
                     type="button"
