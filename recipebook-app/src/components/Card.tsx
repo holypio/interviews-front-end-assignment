@@ -1,9 +1,11 @@
-import { Link } from 'react-router-dom'
-import { API_URL } from '../API/queries'
+import { Link, useRouteLoaderData } from 'react-router-dom'
+import { API_URL, getItemById } from '../API/queries'
 import '../styles/Card.css'
+import { DefaultLoaderValues } from '../main'
 
 
 export default function Card({ recipe }: { recipe: Recipe }) {
+    const categories = useRouteLoaderData("default") as DefaultLoaderValues
 
     return (
         <div className="col my-3">
@@ -12,14 +14,14 @@ export default function Card({ recipe }: { recipe: Recipe }) {
                 <div className="card-body pt-1">
                     <h5 className="card-title mb-3">{recipe.name}</h5>
                     <ul className="list-inline">
-                        <li className="list-inline-item mx-1">
-                            <Link className="tag btn btn-outline-secondary rounded px-4 disabled" to={'/'}>Italian</Link>
+                        <li className="list-inline-item">
+                            <Link className="tag btn btn-outline-secondary rounded px-4 disabled" to={'/'}>{getItemById(categories.cuisines, recipe.cuisineId)?.name}</Link>
                         </li>
-                        <li className="list-inline-item flex-row mx-1">
-                            <Link className="tag btn btn-outline-secondary rounded px-4 disabled" to={'/'}>Non-Vegetarian</Link>
+                        <li className="list-inline-item flex-row">
+                            <Link className="tag btn btn-outline-secondary rounded px-4 disabled" to={'/'}>{getItemById(categories.difficulties, recipe.difficultyId)?.name}</Link>
                         </li>
-                        <li className="list-inline-item flex-row mx-1">
-                            <Link className="tag btn btn-outline-secondary rounded px-4 disabled" to={'/'}>Hard</Link>
+                        <li className="list-inline-item flex-row">
+                            <Link className="tag btn btn-outline-secondary rounded px-4 disabled" to={'/'}>{getItemById(categories.diets, recipe.dietId)?.name}</Link>
                         </li>
                     </ul>
                     {/* <p className="card-text">{recipe.instructions}</p> */}

@@ -1,9 +1,12 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import '../API/queries'
-import { getOptions, postRecipe } from '../API/queries'
+import { postRecipe } from '../API/queries'
 import FormSuccessMessage from '../components/FormSuccessMessage'
+import { useRouteLoaderData } from 'react-router'
+import { DefaultLoaderValues } from '../main'
 
 export default function Form() {
+    const categories = useRouteLoaderData("default") as DefaultLoaderValues
 
     const mutation = useMutation({
         mutationFn: (data: FormData) => {
@@ -18,13 +21,6 @@ export default function Form() {
         return mutation.mutate(reicpeData)
     }
 
-    //TODO: move categories get req
-    const cuisinesQuery = useQuery(getOptions("cuisines"))
-    const difficultiesQuery = useQuery(getOptions("difficulties"))
-    const dietsQuery = useQuery(getOptions("diets"))
-
-    if (!cuisinesQuery.isSuccess || !cuisinesQuery.isSuccess || !dietsQuery.isSuccess) return <></>
-
     if (mutation.isPending) return <p>Adding recipe...</p>
     else if (mutation.isError) {
         <div>An error occurred: {mutation.error.message}</div>
@@ -32,10 +28,6 @@ export default function Form() {
     } else if (mutation.isSuccess) {
         return <FormSuccessMessage />
     }
-
-    const cuisines = cuisinesQuery.data as Cuisine[]
-    const difficulties = difficultiesQuery.data as Difficulty[]
-    const diets = dietsQuery.data as Diet[]
 
 
     return (
@@ -64,7 +56,7 @@ export default function Form() {
                 </label>
                 <select className="form-select" id="inputRecipeCuisine" name="cuisineId" defaultValue="" required>
                     <option className='d-none' value="" key={null} disabled>Choose...</option>
-                    {cuisines.map((cuisine) => (<option value={cuisine.id}>{cuisine.name}</option>))}
+                    {categories.cuisines.map((cuisine) => (<option value={cuisine.id}>{cuisine.name}</option>))}
                 </select>
             </div>
             <div className="col-md-4">
@@ -73,7 +65,7 @@ export default function Form() {
                 </label>
                 <select className="form-select" id="inputRecipeDifficulty" name="difficultyId" defaultValue="" required>
                     <option className='d-none' value="" key={null} disabled>Choose...</option>
-                    {difficulties.map((difficulty) => (<option value={difficulty.id}>{difficulty.name}</option>))}
+                    {categories.difficulties.map((difficulty) => (<option value={difficulty.id}>{difficulty.name}</option>))}
                 </select>
             </div>
             <div className="col-md-4">
@@ -82,7 +74,7 @@ export default function Form() {
                 </label>
                 <select className="form-select" id="inputRecipeDiet" name="dietId" defaultValue="" required>
                     <option className='d-none' value="" key={null} disabled>Choose...</option>
-                    {diets.map((diet) => (<option value={diet.id}>{diet.name}</option>))}
+                    {categories.diets.map((diet) => (<option value={diet.id}>{diet.name}</option>))}
                 </select>
             </div>
 

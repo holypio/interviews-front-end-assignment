@@ -18,12 +18,23 @@ import DefaultLayout from './DefaultLayout.tsx'
 
 import Root from './routes/Root.tsx'
 import Form from './routes/Form.tsx'
+import { getOptions } from './API/queries.tsx'
 
+export type DefaultLoaderValues = { cuisines: Cuisine[]; difficulties: Difficulty[]; diets: Diet[]; }
 const router = createBrowserRouter(createRoutesFromElements(
-  <Route element={<DefaultLayout />}>
+  <Route id='default' element={<DefaultLayout />} loader={async (): Promise<DefaultLoaderValues> => {
+    const data = {
+      cuisines: await queryClient.ensureQueryData(getOptions("cuisines", Infinity)) as Cuisine[],
+      difficulties: await queryClient.ensureQueryData(getOptions("difficulties", Infinity)) as Difficulty[],
+      diets: await queryClient.ensureQueryData(getOptions("diets", Infinity)) as Diet[]
+    }
+    console.log(data)
+    return data
+
+  }}>
     <Route path='/' element={<Root />} loader={Root.getLoader(queryClient)} errorElement={<ErrorPage />}></Route>
     <Route path='/Form' element={<Form />} errorElement={<ErrorPage />}></Route>
-  </Route>
+  </Route >
 ))
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
