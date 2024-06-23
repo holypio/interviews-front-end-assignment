@@ -11,13 +11,12 @@ export default function Grid() {
 
 
     return (
-        <div className="container py-5 my-5">
-            <h1 className="mt-3 text-center">Snap a recipe!</h1>
-            <div className="row row-cols-1 row-cols-lg-3 g-4 py-5">
+        <>
+            <div className="row row-cols-1 row-cols-lg-3 py-3">
                 {data.map((recipe) => (
                     <Card key={recipe.id} recipe={recipe}></Card>
                 ))}
             </div>
-        </div>
+        </>
     )
 }

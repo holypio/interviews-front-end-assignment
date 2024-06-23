@@ -1,12 +1,13 @@
+import { Link } from 'react-router-dom'
 import '../styles/Navbar.css'
 
 export default function Navbar() {
+
+
     return (
-        <nav className="shadow navbar mb-5 navbar-expand-lg fixed-top">
+        <nav className="shadow navbar mb-5 navbar-expand-lg">
             <div className="container-fluid">
-                <a className="navbar-brand me-auto" href="#">
-                    Logo
-                </a>
+                <img className="logo" src="../../public/icon.svg" alt="Logo" />
                 <div
                     className="offcanvas offcanvas-end"
                     tabIndex={-1}
@@ -15,7 +16,7 @@ export default function Navbar() {
                 >
                     <div className="offcanvas-header">
                         <h5 className="offcanvas-title" id="offcanvasNavbarLabel">
-                            Logo
+                            SnapFood
                         </h5>
                         <button
                             type="button"
@@ -54,7 +55,7 @@ export default function Navbar() {
                         </ul>
                     </div>
                 </div>
-                <button className="btn btn-primary rounded px-4 py-1">Add new!</button>
+                <Link className="btn btn-primary rounded px-4 py-1" to={'/form'}>Add new!</Link>
                 <button
                     className="navbar-toggler"
                     type="button"

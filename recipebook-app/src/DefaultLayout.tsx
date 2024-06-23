@@ -1,11 +1,13 @@
 import { Outlet } from 'react-router'
-import Navbar from './components/Navbar'
+import Header from './components/Header'
 
 export default function DefaultLayout() {
     return (
         <>
-            <Navbar />
-            <Outlet />
+            <Header />
+            <div className="container py-5">
+                <Outlet />
+            </div>
         </>
     )
 }

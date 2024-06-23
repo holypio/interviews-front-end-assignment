@@ -10,3 +10,9 @@
     height: 60%;
     object-fit: cover;
 }
+
+.tag:last-child {
+    margin-top: .1rem;
+    padding-top: .1rem;
+    padding-bottom: .1rem;
+}

@@ -7,7 +7,6 @@ import 'bootstrap/dist/js/bootstrap.js'
 
 //components
 import Root from './routes/Root.tsx'
-import Grid from './components/Grid.tsx'
 
 //React Query
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -19,11 +18,12 @@ const queryClient = new QueryClient()
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import ErrorPage from './ErrorPage.tsx'
 import DefaultLayout from './DefaultLayout.tsx'
+import Form from './routes/Form.tsx'
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route element={<DefaultLayout />}>
-    <Route path='/' element={<Root />} errorElement={<ErrorPage />}>
-    </Route>
+    <Route path='/' element={<Root />} errorElement={<ErrorPage />}></Route>
+    <Route path='/Form' element={<Form />} errorElement={<ErrorPage />}></Route>
   </Route>
 ))
 
