@@ -33,3 +33,10 @@ interface Diet {
 }
 
 type APIResources = "recipes" | "comments" | "cuisines" | "difficulties" | "diets"
+
+type QueryFilter = {
+    cuisineId?: string[],
+    difficultyId?: string[],
+    dietId?: string[],
+    [key: string]: string[]
+}

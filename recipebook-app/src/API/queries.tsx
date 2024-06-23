@@ -1,21 +1,21 @@
 import { queryOptions } from "@tanstack/react-query";
 import { Axios } from "axios";
+import { createSearchParams } from "react-router-dom";
 
 export const API_URL = 'http://localhost:8080'
 const axiosClient = new Axios({ "baseURL": API_URL })
 
 
-async function fetchData(key: APIResources, filterParams?: any) {
-    // const response = await axiosClient.get(key + "?" + filterParams, { params: filterParams })
-    const response = await axiosClient.get(key + "?" + filterParams)
+async function fetchData(key: APIResources, id: string = "", queryFilter?: QueryFilter) {
+    const response = await axiosClient.get(key + "/" + id + "?" + createSearchParams(queryFilter).toString())
     return JSON.parse(response.data) as unknown
 }
 
-export function getOptions(key: APIResources, staleTime?: number, filterParams?: any) {
+export function getOptions(key: APIResources, id?: string, queryFilter?: QueryFilter) {
     return queryOptions({
-        queryKey: [key],
-        queryFn: () => fetchData(key, filterParams),
-        staleTime: staleTime
+        queryKey: [key, queryFilter],
+        queryFn: () => fetchData(key, id, queryFilter),
+        staleTime: 1000 * 60 * 2
     })
 }
 

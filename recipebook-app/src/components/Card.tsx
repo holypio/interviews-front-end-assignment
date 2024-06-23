@@ -24,10 +24,8 @@ export default function Card({ recipe }: { recipe: Recipe }) {
                             <Link className="tag btn btn-outline-secondary rounded px-4 disabled" to={'/'}>{getItemById(categories.diets, recipe.dietId)?.name}</Link>
                         </li>
                     </ul>
-                    {/* <p className="card-text">{recipe.instructions}</p> */}
                 </div>
                 <div className="d-flex justify-content-around mb-3">
-                    <h3>{recipe.difficultyId}</h3>
                     <button className="btn btn-primary rounded">View Details</button>
                 </div>
             </div>

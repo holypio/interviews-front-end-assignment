@@ -24,11 +24,10 @@ export type DefaultLoaderValues = { cuisines: Cuisine[]; difficulties: Difficult
 const router = createBrowserRouter(createRoutesFromElements(
   <Route id='default' element={<DefaultLayout />} loader={async (): Promise<DefaultLoaderValues> => {
     const data = {
-      cuisines: await queryClient.ensureQueryData(getOptions("cuisines", Infinity)) as Cuisine[],
-      difficulties: await queryClient.ensureQueryData(getOptions("difficulties", Infinity)) as Difficulty[],
-      diets: await queryClient.ensureQueryData(getOptions("diets", Infinity)) as Diet[]
+      cuisines: await queryClient.ensureQueryData({ ...getOptions("cuisines"), staleTime: Infinity }) as Cuisine[],
+      difficulties: await queryClient.ensureQueryData({ ...getOptions("difficulties"), staleTime: Infinity }) as Difficulty[],
+      diets: await queryClient.ensureQueryData({ ...getOptions("diets"), staleTime: Infinity }) as Diet[]
     }
-    console.log(data)
     return data
 
   }}>

@@ -26,7 +26,7 @@ export default function Navbar() {
                         />
                     </div>
                     <div className="offcanvas-body">
-                        <ul className="navbar-nav justify-content-center flex-grow-1 pe-3">
+                        <ul className="navbar-nav justify-content-center flex-grow-1 pe-3 d-none">
                             <li className="nav-item">
                                 <a className="nav-link active" aria-current="page" href="#">
                                     Italian
